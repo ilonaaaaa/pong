@@ -1,17 +1,17 @@
 body{
     font-family: Arial, sans-serif;
     font-size: 12px;
-    background-color: #d5994a;
+    background-color: #808080;
     text-align: center;
 }
 a{
-    color: #808080;
+    color: #ffffff;
     text-transform: uppercase;
     text-decoration: none;
     transition: color 1s;
 }
 a:hover{
-    color: #5e0000;
+    color: #ff0000;
     text-decoration: underline;
 }
 a:visited{
@@ -27,4 +27,25 @@ a:visited{
 }
 canvas{
     outline: 1px solid #333;
+}
+
+#scores{
+    color: #ff0000;
+    font-size : 5vw;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 900px;
+    width: 95.5%;
+}
+
+.score{
+    color: #ff0000
+}
+.name{
+    font-size: 2vw;
+}
+
+#scores >* {
+    margin: 1vw;
 }
