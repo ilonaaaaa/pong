@@ -1,7 +1,11 @@
 body{
     font-family: Arial, sans-serif;
     font-size: 12px;
-    background-color: #808080;
+    background-color: #000000;
+    background-image: url(https://wallpaperaccess.com/full/2714469.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
     text-align: center;
 }
 a{

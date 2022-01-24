@@ -25,7 +25,7 @@ class Tableau1 extends Phaser.Scene{
 
         this.balle = this.physics.add.sprite(this.largeur/2, this.hauteur/2, 'circle')
 
-        this.balle.setDisplaySize(30, 30)
+        this.balle.setDisplaySize(36, 36)
         this.balle.body.setSize(20, 20);
         this.balle.body.setBounce(1,1);
         this.balle.body.setAllowGravity(false)
@@ -44,13 +44,13 @@ class Tableau1 extends Phaser.Scene{
         this.bas.setImmovable(true);
 
 
-        this.player1 = this.physics.add.sprite(50, 250, 'joueur1')
-        this.player1.setDisplaySize(80, 100)
+        this.player1 = this.physics.add.sprite(35, 250, 'joueur1')
+        this.player1.setDisplaySize(110, 130)
         this.player1.body.setAllowGravity(false)
 
 
-        this.player2 = this.physics.add.sprite(920, 250, 'joueur2')
-        this.player2.setDisplaySize(80, 100)
+        this.player2 = this.physics.add.sprite(960, 250, 'joueur2')
+        this.player2.setDisplaySize(110, 130)
         this.player2.body.setAllowGravity(false)
         this.player2.flipX=true;
 
@@ -99,17 +99,6 @@ class Tableau1 extends Phaser.Scene{
         this.joueurDroite = new Joueur('Spurs','joueurDroite')
         console.log(this.joueurGauche)
 
-        let particles2 = this.add.particles('white');
-        let particle=particles2.createEmitter({
-            alpha: { start: 0.1, end: 0 },
-            scale: { start: 0.4, end: 0.1},
-            //tint: { start: 0xff945e, end: 0xff945e },
-            blendMode: 'ADD',
-            frequency: 2,
-            x: me.balle.x,
-            y: this.balle.y
-        });
-        particle.startFollow(this.balle)
 
         this.balleAucentre();
         this.initKeyboard()
@@ -170,12 +159,10 @@ class Tableau1 extends Phaser.Scene{
          * Remise a zéro des raquettes
          */
         if(this.balle.x > this.largeur){
-            this.bt.play()
             this.player1.setY(250)
             this.player2.setY(250)
         }
         if(this.balle.x <0){
-            this.bt.play()
             this.player1.setY(250)
             this.player2.setY(250)
         }
