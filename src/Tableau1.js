@@ -1,5 +1,6 @@
 class Tableau1 extends Phaser.Scene{
 
+//it's froggy time
 
     preload(){
         this.load.image('square','asset/carre.png');
