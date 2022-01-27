@@ -4,10 +4,14 @@ class Tableau1 extends Phaser.Scene{
 
     preload(){
         this.load.image('square','asset/carre.png');
-        this.load.image('circle','asset/ballon.png');
-        this.load.image('map','asset/terrain.png');
-        this.load.image('joueur1','asset/joueur1.png');
-        this.load.image('joueur2','asset/joueur2.png');
+        this.load.image('mouche','asset/mouche.png');
+        this.load.image('map','asset/map.jpg');
+        this.load.image('froppy','asset/froppong.png');
+        this.load.image('crappy','asset/crappong.png');
+
+        for(let e=1;e<=2;e++){
+            this.load.image('langue'+e, 'asset/langue/langue'+e+'.png');
+        }
     }
 
     create(){
@@ -21,10 +25,27 @@ class Tableau1 extends Phaser.Scene{
         this.speedY = Phaser.Math.Between(-500, 500)
         this.maxspeed = 500
 
-        //------------------ANIM HEAD------------------
+        //---------------------------------------------
         this.add.image(500,250,'map')
 
-        this.balle = this.physics.add.sprite(this.largeur/2, this.hauteur/2, 'circle')
+        this.anims.create({
+            key: 'blop',
+            frames: [
+                {key:'langue1'},
+            ],
+            frameRate: 1,
+            repeat: 0,
+        });
+        this.anims.create({
+            key: 'blap',
+            frames: [
+                {key:'langue2'},
+            ],
+            frameRate: 1,
+            repeat: 0,
+        });
+
+        this.balle = this.physics.add.sprite(this.largeur/2, this.hauteur/2, 'mouche')
 
         this.balle.setDisplaySize(36, 36)
         this.balle.body.setSize(20, 20);
@@ -45,15 +66,14 @@ class Tableau1 extends Phaser.Scene{
         this.bas.setImmovable(true);
 
 
-        this.player1 = this.physics.add.sprite(50, 360, 'raquette').setOrigin(0, 0)
-        this.player1.setDisplaySize(20, 100)
+        this.player1 = this.physics.add.sprite(50, 360, 'froppy').setOrigin(0, 0)
+        this.player1.setDisplaySize(70, 110)
         this.player1.body.setAllowGravity(false)
 
 
-        this.player2 = this.physics.add.sprite(920, 360, 'raquette').setOrigin(0, 0)
-        this.player2.setDisplaySize(20, 100)
+        this.player2 = this.physics.add.sprite(920, 360, 'crappy').setOrigin(0, 0)
+        this.player2.setDisplaySize(70, 110)
         this.player2.body.setAllowGravity(false)
-        this.player2.flipX=true;
 
         this.player1.setImmovable(true)
         this.player2.setImmovable(true)
@@ -61,11 +81,11 @@ class Tableau1 extends Phaser.Scene{
         let me = this;
         this.physics.add.collider(this.player1, this.balle,function(){
             console.log('touche player 1')
-            me.rebond(me.player1)
+            me.rebondG(me.player1)
         })
         this.physics.add.collider(this.player2, this.balle,function(){
             console.log('touche player 2')
-            me.rebond(me.player2)
+            me.rebondD(me.player2)
         })
 
         this.physics.add.collider(this.balle, this.bas)
@@ -105,28 +125,59 @@ class Tableau1 extends Phaser.Scene{
         this.balleAucentre();
         this.initKeyboard()
 
+        this.tweens.add({
+            targets:[this.balle],
+            rotation: 6,
+            ease :'Repeat',
+            repeat:-1,
+            duration:1000,
+        })
 
     }
 
-    // créer le rebond sur les raquettes
-    rebond(players){
-        let me=this;
+    // créer le rebond sur les grenouilles
+    rebondG(){
 
-        console.log(players.y)
+        console.log(player1.y)
         console.log(me.balle.y)
-        console.log((me.balle.y)-(players.y))
+        console.log((me.balle.y)-(player1.y))
 
-        let hauteurPlayers=players.displayHeight;
+        let hauteurPlayer1=player1.displayHeight;
 
-        let positionRelativePlayers =(this.balle.y-players.y);
+        let positionRelativePlayer1 =(this.balle.y-player1.y);
 
-        positionRelativePlayers =(positionRelativePlayers/hauteurPlayers);
+        positionRelativePlayer1 =(positionRelativePlayer1/hauteurPlayer1);
 
-        positionRelativePlayers= positionRelativePlayers*2-1;
-        console.log(positionRelativePlayers);
+        positionRelativePlayer1= positionRelativePlayer1*2-1;
+        console.log(positionRelativePlayer1);
 
-        this.balle.setVelocityY(this.balle.body.velocity.y + positionRelativePlayers * hauteurPlayers )
+        this.balle.setVelocityY(this.balle.body.velocity.y + positionRelativePlayer1 * hauteurPlayer1 )
+
+        this.player1.play('blop');
+
     }
+
+    rebondD(){
+
+        console.log(player2.y)
+        console.log(me.balle.y)
+        console.log((me.balle.y)-(player2.y))
+
+        let hauteurPlayer2=player2.displayHeight;
+
+        let positionRelativePlayer2 =(this.balle.y-player2.y);
+
+        positionRelativePlayer2 =(positionRelativePlayer2/hauteurPlayer2);
+
+        positionRelativePlayer2= positionRelativePlayer2*2-1;
+        console.log(positionRelativePlayer2);
+
+        this.balle.setVelocityY(this.balle.body.velocity.y + positionRelativePlayer2 * hauteurPlayer2 )
+
+        this.player2.play('blap');
+
+    }
+
 
 
 
