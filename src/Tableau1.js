@@ -45,13 +45,13 @@ class Tableau1 extends Phaser.Scene{
         this.bas.setImmovable(true);
 
 
-        this.player1 = this.physics.add.sprite(35, 250, 'joueur1')
-        this.player1.setDisplaySize(110, 130)
+        this.player1 = this.physics.add.sprite(50, 360, 'raquette').setOrigin(0, 0)
+        this.player1.setDisplaySize(20, 100)
         this.player1.body.setAllowGravity(false)
 
 
-        this.player2 = this.physics.add.sprite(960, 250, 'joueur2')
-        this.player2.setDisplaySize(110, 130)
+        this.player2 = this.physics.add.sprite(920, 360, 'raquette').setOrigin(0, 0)
+        this.player2.setDisplaySize(20, 100)
         this.player2.body.setAllowGravity(false)
         this.player2.flipX=true;
 
@@ -96,8 +96,9 @@ class Tableau1 extends Phaser.Scene{
         }
 
 
-        this.joueurGauche = new Joueur('Lakers','joueurGauche')
-        this.joueurDroite = new Joueur('Spurs','joueurDroite')
+        this.joueurGauche = new Joueur('Froppy','joueurGauche')
+        this.joueurDroite = new Joueur('Crappy','joueurDroite')
+        window.toto=this.joueurGauche;
         console.log(this.joueurGauche)
 
 
@@ -131,16 +132,15 @@ class Tableau1 extends Phaser.Scene{
 
 
     balleAucentre(){
-        /**
-         *
-         * Remise balle au centre
-         */
         this.balle.x = this.largeur/2
         this.balle.y = this.hauteur/2
         this.speedX = 0
 
         this.balle.setVelocityX(Math.random()>0.5?-300:300)
         this.balle.setVelocityY(0)
+
+        this.player1.y=this.hauteur/2-50
+        this.player2.y=this.hauteur/2-50
     }
 
     /**
@@ -155,10 +155,6 @@ class Tableau1 extends Phaser.Scene{
     }
 
     update(){
-        /**
-         *
-         * Remise a zéro des raquettes
-         */
         if(this.balle.x > this.largeur){
             this.player1.setY(250)
             this.player2.setY(250)
@@ -181,10 +177,6 @@ class Tableau1 extends Phaser.Scene{
     }
 
     initKeyboard(){
-        /**
-         *
-         * Création des input des touches et de leur action
-         */
         let me = this
         this.input.keyboard.on('keydown', function (kevent) {
             switch (kevent.keyCode) {

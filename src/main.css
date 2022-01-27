@@ -34,17 +34,17 @@ canvas{
 }
 
 #scores{
-    color: #ff0000;
+    color: #27722d;
     font-size : 5vw;
     display: flex;
     justify-content: center;
     position: absolute;
-    top: 900px;
+    top: 750px;
     width: 95.5%;
 }
 
 .score{
-    color: #ff0000
+    color: #27722d
 }
 .name{
     font-size: 2vw;
