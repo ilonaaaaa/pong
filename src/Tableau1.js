@@ -35,7 +35,7 @@ class Tableau1 extends Phaser.Scene{
             ],
             frameRate: 1,
             repeat: 0,
-            hideoncomplete: true,
+            yoyo: true,
         });
         this.anims.create({
             key: 'blap',
@@ -44,7 +44,7 @@ class Tableau1 extends Phaser.Scene{
             ],
             frameRate: 1,
             repeat: 0,
-            hideoncomplete: true,
+            yoyo: true,
         });
 
         this.balle = this.physics.add.sprite(this.largeur/2, this.hauteur/2, 'mouche')
