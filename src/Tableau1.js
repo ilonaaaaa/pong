@@ -67,10 +67,10 @@ class Tableau1 extends Phaser.Scene{
 
 
         this.player1 = this.physics.add.sprite(50, 360, 'froppy').setOrigin(0, 0)
-        this.player1.setDisplaySize(20,100)
+        this.player1.setDisplaySize(80,100)
 
         this.player2 = this.physics.add.sprite(880, 360, 'crappy').setOrigin(0, 0)
-        this.player2.setDisplaySize(20,100)
+        this.player2.setDisplaySize(80,100)
 
         this.player1.setImmovable(true)
         this.player2.setImmovable(true)
@@ -132,7 +132,7 @@ class Tableau1 extends Phaser.Scene{
 
     rebondG(player1) {
 
-        this.rando = this.balle.y - player1
+        this.rando = this.balle.y - player1.y
         this.coeff = this.rando / 100
         this.coeff = this.coeff * 10 - 5
         this.balle.setVelocityY(this.balle.body.velocity.y + this.coeff * 50)
@@ -141,7 +141,7 @@ class Tableau1 extends Phaser.Scene{
 
     rebondD(player2) {
 
-        this.rando = this.balle.y - player2
+        this.rando = this.balle.y - player2.y
         this.coeff = this.rando / 100
         this.coeff = this.coeff * 10 - 5
         this.balle.setVelocityY(this.balle.body.velocity.y + this.coeff * 50)
