@@ -5,7 +5,7 @@ class Tableau1 extends Phaser.Scene{
     preload(){
         this.load.image('square','asset/carre.png');
         this.load.image('mouche','asset/mouche.png');
-        this.load.image('map','asset/map.jpg');
+        this.load.image('map','asset/mapus.jpg');
         this.load.image('froppy','asset/froppong.png');
         this.load.image('crappy','asset/crappong.png');
 
@@ -67,24 +67,19 @@ class Tableau1 extends Phaser.Scene{
 
 
         this.player1 = this.physics.add.sprite(50, 360, 'froppy').setOrigin(0, 0)
-        this.player1.setDisplaySize(70, 110)
-        this.player1.body.setAllowGravity(false)
+        this.player1.setDisplaySize(20,100)
 
-
-        this.player2 = this.physics.add.sprite(920, 360, 'crappy').setOrigin(0, 0)
-        this.player2.setDisplaySize(70, 110)
-        this.player2.body.setAllowGravity(false)
+        this.player2 = this.physics.add.sprite(880, 360, 'crappy').setOrigin(0, 0)
+        this.player2.setDisplaySize(20,100)
 
         this.player1.setImmovable(true)
         this.player2.setImmovable(true)
 
         let me = this;
         this.physics.add.collider(this.player1, this.balle,function(){
-            console.log('touche player 1')
             me.rebondG(me.player1)
         })
         this.physics.add.collider(this.player2, this.balle,function(){
-            console.log('touche player 2')
             me.rebondD(me.player2)
         })
 
@@ -135,47 +130,22 @@ class Tableau1 extends Phaser.Scene{
 
     }
 
-    // créer le rebond sur les grenouilles
-    rebondG(){
+    rebondG(player1) {
 
-        console.log(player1.y)
-        console.log(me.balle.y)
-        console.log((me.balle.y)-(player1.y))
-
-        let hauteurPlayer1=player1.displayHeight;
-
-        let positionRelativePlayer1 =(this.balle.y-player1.y);
-
-        positionRelativePlayer1 =(positionRelativePlayer1/hauteurPlayer1);
-
-        positionRelativePlayer1= positionRelativePlayer1*2-1;
-        console.log(positionRelativePlayer1);
-
-        this.balle.setVelocityY(this.balle.body.velocity.y + positionRelativePlayer1 * hauteurPlayer1 )
-
-        this.player1.play('blop');
-
+        this.rando = this.balle.y - player1
+        this.coeff = this.rando / 100
+        this.coeff = this.coeff * 10 - 5
+        this.balle.setVelocityY(this.balle.body.velocity.y + this.coeff * 50)
+        this.console.log(this.balle.x, this.balle.y)
     }
 
-    rebondD(){
+    rebondD(player2) {
 
-        console.log(player2.y)
-        console.log(me.balle.y)
-        console.log((me.balle.y)-(player2.y))
-
-        let hauteurPlayer2=player2.displayHeight;
-
-        let positionRelativePlayer2 =(this.balle.y-player2.y);
-
-        positionRelativePlayer2 =(positionRelativePlayer2/hauteurPlayer2);
-
-        positionRelativePlayer2= positionRelativePlayer2*2-1;
-        console.log(positionRelativePlayer2);
-
-        this.balle.setVelocityY(this.balle.body.velocity.y + positionRelativePlayer2 * hauteurPlayer2 )
-
-        this.player2.play('blap');
-
+        this.rando = this.balle.y - player2
+        this.coeff = this.rando / 100
+        this.coeff = this.coeff * 10 - 5
+        this.balle.setVelocityY(this.balle.body.velocity.y + this.coeff * 50)
+        this.console.log(this.balle.x, this.balle.y)
     }
 
 

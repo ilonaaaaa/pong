@@ -7,9 +7,6 @@ let gameConfig = {
     disableWebAudio: true,
     physics: {
         default: 'arcade',
-        arcade: {
-            gravity: { y: 200 }
-        }
     },
     scene: new Tableau1()
 
