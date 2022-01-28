@@ -32,19 +32,19 @@ class Tableau1 extends Phaser.Scene{
             key: 'blop',
             frames: [
                 {key:'langue1'},
+                {key:'froppy'},
             ],
             frameRate: 1,
             repeat: 0,
-            yoyo: true,
         });
         this.anims.create({
             key: 'blap',
             frames: [
                 {key:'langue2'},
+                {key:'crappy'},
             ],
             frameRate: 1,
             repeat: 0,
-            yoyo: true,
         });
 
         this.balle = this.physics.add.sprite(this.largeur/2, this.hauteur/2, 'mouche')
