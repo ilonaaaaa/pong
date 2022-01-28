@@ -35,6 +35,7 @@ class Tableau1 extends Phaser.Scene{
             ],
             frameRate: 1,
             repeat: 0,
+            hideoncomplete: true,
         });
         this.anims.create({
             key: 'blap',
@@ -43,6 +44,7 @@ class Tableau1 extends Phaser.Scene{
             ],
             frameRate: 1,
             repeat: 0,
+            hideoncomplete: true,
         });
 
         this.balle = this.physics.add.sprite(this.largeur/2, this.hauteur/2, 'mouche')
@@ -137,6 +139,7 @@ class Tableau1 extends Phaser.Scene{
         this.coeff = this.coeff * 10 - 5
         this.balle.setVelocityY(this.balle.body.velocity.y + this.coeff * 50)
         console.log(this.balle.x, this.balle.y)
+        this.player1.play('blop')
     }
 
     rebondD(player2) {
@@ -146,6 +149,7 @@ class Tableau1 extends Phaser.Scene{
         this.coeff = this.coeff * 10 - 5
         this.balle.setVelocityY(this.balle.body.velocity.y + this.coeff * 50)
         console.log(this.balle.x, this.balle.y)
+        this.player2.play('blap')
     }
 
 
