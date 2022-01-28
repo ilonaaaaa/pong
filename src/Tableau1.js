@@ -136,7 +136,7 @@ class Tableau1 extends Phaser.Scene{
         this.coeff = this.rando / 100
         this.coeff = this.coeff * 10 - 5
         this.balle.setVelocityY(this.balle.body.velocity.y + this.coeff * 50)
-        this.console.log(this.balle.x, this.balle.y)
+        console.log(this.balle.x, this.balle.y)
     }
 
     rebondD(player2) {
@@ -145,7 +145,7 @@ class Tableau1 extends Phaser.Scene{
         this.coeff = this.rando / 100
         this.coeff = this.coeff * 10 - 5
         this.balle.setVelocityY(this.balle.body.velocity.y + this.coeff * 50)
-        this.console.log(this.balle.x, this.balle.y)
+        console.log(this.balle.x, this.balle.y)
     }
 
 
